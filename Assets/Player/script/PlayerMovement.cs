@@ -1,0 +1,93 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    [SerializeField] private float speed;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float jumpPower;
+    private Rigidbody2D body;
+    private Animator anim;
+    private CapsuleCollider2D capsuleCollider;
+    private float horizontalInput;
+    public Vector3 respawnPoint;
+
+
+
+    private void Awake()
+    {
+        //get reference for rigidbody and animator from object
+        body = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
+
+
+    }
+    void Start()
+    {
+        respawnPoint = transform.position;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+
+
+        //Flipping the player when moving left-right
+        if (horizontalInput > 0.01f)
+            transform.localScale = Vector3.one;
+
+        else if (horizontalInput < -0.01f)
+            transform.localScale = new Vector3(-1, 1, 1);
+
+        if (Input.GetKey(KeyCode.Space) && isGrounded())
+            Jump();
+
+        //set animator parameter
+        anim.SetBool("run", horizontalInput != 0);
+        anim.SetBool("grounded", isGrounded());
+    }
+
+    private void Jump()
+    {
+        body.velocity = new Vector2(body.velocity.x, jumpPower);
+        anim.SetTrigger("jump");
+
+    }
+
+
+    private bool isGrounded()
+    {
+        RaycastHit2D raycastHit = Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.bounds.size, CapsuleDirection2D.Vertical, 0, Vector2.down, 0.1f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
+
+    //walljump
+
+    /*private bool onWall()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.x,0), 0.1f, wallLayer);
+        return raycastHit.collider != null;
+    }*/
+
+    public bool canAttack()
+    {
+        return horizontalInput == 0 && isGrounded();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "FallDetector")
+        {
+            transform.position = respawnPoint;
+        }
+        if (other.tag == "Checkpoint")
+        {
+            respawnPoint = other.transform.position;
+        }
+    }
+}
