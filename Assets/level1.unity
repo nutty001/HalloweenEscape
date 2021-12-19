@@ -746,7 +746,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217711177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.3069, y: -1.8400002, z: -10}
+  m_LocalPosition: {x: 87.78, y: -1.8400002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4158,7 +4158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141077985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.3069, y: -1.8400002, z: -10}
+  m_LocalPosition: {x: 87.78, y: -1.8400002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 254982226}
@@ -4177,6 +4177,7 @@ GameObject:
   - component: {fileID: 1141419710}
   - component: {fileID: 1141419709}
   - component: {fileID: 1141419708}
+  - component: {fileID: 1141419711}
   m_Layer: 0
   m_Name: ladders
   m_TagString: Untagged
@@ -4458,6 +4459,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1141419711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141419706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff75c02b9ca9af47be6490946a99f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbingspeed: 6
 --- !u!1 &1179391340
 GameObject:
   m_ObjectHideFlags: 0
@@ -9572,7 +9586,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626389538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.3069, y: -1.54, z: 0}
+  m_LocalPosition: {x: 87.78, y: -1.54, z: 0}
   m_LocalScale: {x: 0.929, y: 1, z: 1}
   m_Children:
   - {fileID: 1200067783}
